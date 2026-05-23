@@ -1,0 +1,152 @@
+# **ROADMAPS FOR ARTICLE & DASHBOARD**
+
+---
+
+## **📝 ARTICLE ROADMAP**
+
+### **Structure (5 Main Sections)**
+
+**1. Introduction (2-3 paragraphs)**
+- What is Power BI
+- Why companies use it for BI/analytics
+- Role of SQL databases in data storage
+- *Screenshot: Power BI Desktop interface*
+
+**2. Connecting to Local PostgreSQL (Step-by-step)**
+- Open Power BI Desktop → Get Data → PostgreSQL Database
+- Enter server (localhost) and database name
+- Provide credentials
+- Select tables (customers, products, sales, inventory)
+- Load data
+- *Screenshots: Get Data menu, connection dialog, table selection*
+
+**3. Connecting to Aiven PostgreSQL (Cloud)**
+- Obtain connection details from Aiven console (host, port, database, username, password)
+- Download SSL certificate
+- Configure connection with SSL certificate path
+- Explain why SSL is required (security/encryption)
+- *Screenshots: Aiven console, certificate download, SSL configuration*
+
+**4. Data Modeling & Relationships**
+- Show loaded tables in Power BI
+- Create relationships:
+  - sales.customer_id → customers.customer_id
+  - sales.product_id → products.product_id
+  - inventory.product_id → products.product_id
+- Explain data modeling concepts (primary/foreign keys, relationships)
+- *Screenshots: Model view, relationship diagram*
+
+**5. Conclusion - SQL Skills Importance**
+- Data retrieval and filtering
+- Aggregations and calculations
+- Data preparation before visualization
+- Performance optimization
+
+---
+
+## **📊 POWER BI DASHBOARD ROADMAP**
+
+### **Phase 1: Data Connection (15 mins)**
+1. Open Power BI Desktop
+2. Connect to PostgreSQL database (local or Aiven)
+3. Import 4 tables: customers, products, sales, inventory
+4. Verify data loaded correctly
+
+### **Phase 2: Data Modeling (10 mins)**
+1. Go to Model view
+2. Create relationships:
+   - **customers** ←→ **sales** (customer_id)
+   - **products** ←→ **sales** (product_id)
+   - **products** ←→ **inventory** (product_id)
+3. Set relationship type: One-to-Many
+4. Verify relationships active
+
+### **Phase 3: Create Measures (15 mins)**
+Create DAX measures:
+- **Total Sales Revenue** = SUM(sales[total_amount])
+- **Total Quantity Sold** = SUM(sales[quantity_sold])
+- **Total Customers** = DISTINCTCOUNT(sales[customer_id])
+- **Total Products** = DISTINCTCOUNT(sales[product_id])
+- **Average Order Value** = [Total Sales Revenue] / [Total Transactions]
+- **Total Transactions** = COUNTROWS(sales)
+- **Low Stock Products** = COUNTROWS(FILTER(inventory, stock_quantity < 10))
+
+### **Phase 4: Build Dashboard Visuals (45 mins)**
+
+**A. Sales Performance Section**
+1. **Card Visual**: Total Revenue
+2. **Card Visual**: Total Transactions
+3. **Card Visual**: Average Order Value
+4. **Line Chart**: Sales Trend Over Time (sale_date on X-axis, total_amount on Y-axis)
+5. **Column Chart**: Monthly Sales Comparison
+
+**B. Product Performance Section**
+1. **Table**: Top 10 Products by Revenue (product_name, total_sales, quantity_sold)
+2. **Bar Chart**: Sales by Category (category vs total_amount)
+3. **Scatter Plot**: Price vs Quantity Sold
+4. **Pie Chart**: Revenue Distribution by Category
+
+**C. Customer Insights Section**
+1. **Card**: Total Unique Customers
+2. **Table**: Top 10 Customers by Spending (customer_name, total_spent, purchase_count)
+3. **Bar Chart**: Customers by Membership Status
+4. **Histogram**: Customer Purchase Frequency Distribution
+
+**D. Inventory Insights Section**
+1. **Card**: Total Products in Stock
+2. **Card**: Low Stock Alert (products with stock < 10)
+3. **Table**: Products Needing Restock (product_name, stock_quantity, total_sold)
+4. **Bar Chart**: Stock Quantity by Category
+5. **Gauge Chart**: Inventory Health (average stock level)
+
+### **Phase 5: Formatting & Polish (15 mins)**
+1. Add dashboard title
+2. Arrange visuals in logical layout
+3. Apply consistent color scheme
+4. Add slicers:
+   - Date Range slicer
+   - Category slicer
+   - Membership Status slicer
+5. Format numbers (currency, decimals)
+6. Add tooltips
+7. Test interactivity between visuals
+
+### **Phase 6: Final Review (10 mins)**
+1. Verify all relationships working
+2. Check data accuracy
+3. Test filters and slicers
+4. Ensure mobile-friendly layout
+5. Save and publish
+
+---
+
+## **⏱️ TOTAL TIME ESTIMATE**
+- **Article Writing**: 2-3 hours
+- **Dashboard Creation**: 1.5-2 hours
+- **Total**: 3.5-5 hours
+
+---
+
+## **📋 DELIVERABLES CHECKLIST**
+
+**Article:**
+- [ ] Introduction section
+- [ ] Local PostgreSQL connection steps
+- [ ] Aiven cloud connection steps
+- [ ] SSL certificate explanation
+- [ ] Data modeling section
+- [ ] SQL importance conclusion
+- [ ] 6-8 screenshots
+
+**Dashboard:**
+- [ ] 4 tables imported
+- [ ] 3 relationships created
+- [ ] 7 DAX measures
+- [ ] 15+ visuals
+- [ ] 3 slicers
+- [ ] Professional formatting
+- [ ] Working interactivity
+
+---
+
+Would you like me to now write the complete article with detailed steps and placeholder descriptions for screenshots?
